@@ -10,98 +10,6 @@ import java.util.*;
  * @author bowis
  */
 
-// Clase base Persona
-class Persona {
-    protected String nombre;
-    protected int edad;
-    protected String correo;
-
-    public Persona(String nombre, int edad, String correo) {
-        this.nombre = nombre;
-        this.edad = edad;
-        this.correo = correo;
-    }
-
-    @Override
-    public String toString() {
-        return this.getClass().getSimpleName() + "(" + nombre + ", " + edad + ", " + correo + ")";
-    }
-}
-
-// Clase Empleado hereda de Persona
-class Empleado extends Persona {
-    protected double salario;
-    protected String departamento;
-
-    public Empleado(String nombre, int edad, String correo, double salario, String departamento) {
-        super(nombre, edad, correo);
-        this.salario = salario;
-        this.departamento = departamento;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + ", Salario: " + salario + ", Departamento: " + departamento;
-    }
-}
-
-// Clase Gerente hereda de Empleado
-class Gerente extends Empleado {
-    private List<Empleado> subordinados;
-
-    public Gerente(String nombre, int edad, String correo, double salario, String departamento) {
-        super(nombre, edad, correo, salario, departamento);
-        this.subordinados = new ArrayList<>();
-    }
-
-    public void agregarSubordinado(Empleado empleado) {
-        if (!subordinados.contains(empleado)) {
-            subordinados.add(empleado);
-        }
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + ", Subordinados: " + subordinados.stream().map(e -> e.nombre).toList();
-    }
-}
-
-// Clase Desarrollador hereda de Empleado
-class Desarrollador extends Empleado {
-    private String lenguajeProgramacion;
-
-    public Desarrollador(String nombre, int edad, String correo, double salario, String lenguajeProgramacion) {
-        super(nombre, edad, correo, salario, "Desarrollo de Software");
-        this.lenguajeProgramacion = lenguajeProgramacion;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + ", Lenguaje: " + lenguajeProgramacion;
-    }
-}
-
-// Clase Cliente hereda de Persona
-class Cliente extends Persona {
-    private String empresa;
-    private List<String> proyectosContratados;
-
-    public Cliente(String nombre, int edad, String correo, String empresa) {
-        super(nombre, edad, correo);
-        this.empresa = empresa;
-        this.proyectosContratados = new ArrayList<>();
-    }
-
-    public void contratarProyecto(String proyecto) {
-        proyectosContratados.add(proyecto);
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + ", Empresa: " + empresa + ", Proyectos: " + proyectosContratados;
-    }
-}
-
 public class Empresa {
     
     private ObjectContainer db;
@@ -172,5 +80,4 @@ public class Empresa {
 
         empresa.cerrar();
     }
-    
 }
